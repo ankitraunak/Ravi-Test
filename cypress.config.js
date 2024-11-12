@@ -6,6 +6,7 @@ const codeCoverage = require('@cypress/code-coverage/task');
 module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
+    reportDir: 'mochawesome-report',
     overwrite: false,
     html: true,
     json: true,
