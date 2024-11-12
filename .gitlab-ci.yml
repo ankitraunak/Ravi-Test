@@ -8,3 +8,11 @@ unit-test-job:
   script:
     - npm ci
     - npm install mochawesome
+    - npx cypress run --reporter mochawesome
+  artifacts:
+    when: always
+    paths:
+      - mochawesome-report/**
+      - cypress/screenshots/**/*.png
+      - cypress/videos/**/*.mp4
+    expire_in: 7 days
