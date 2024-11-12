@@ -6,7 +6,9 @@ unit-test-job:
   image: cypress/browsers   
   stage: test  
   script:
-    - npm ci
+    - npm init
+    - npm install cypress --save-dev
+    - npm install cypress-cucumber-preprocessor --save-dev
     - npm install mochawesome
     - npx cypress run --reporter mochawesome
   artifacts:
