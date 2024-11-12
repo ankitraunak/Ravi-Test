@@ -1,16 +1,16 @@
 stages:       
-
   - test
 
 unit-test-job:
   image: cypress/browsers   
   stage: test  
   script:
-    - npm init
-    - npm install cypress --save-dev
+    - npm ci
     - npm install cypress-cucumber-preprocessor --save-dev
-    - npm install mochawesome
-    - npx cypress run --reporter mochawesome
+    - npm install mochawesome --save-dev
+    - npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report,overwrite=false,html=true,json=true
+    - npx mochawesome-merge mochawesome-report/*.json > mochawesome-report/mochawesome.json
+    - npx marge mochawesome-report/mochawesome.json
   artifacts:
     when: always
     paths:
