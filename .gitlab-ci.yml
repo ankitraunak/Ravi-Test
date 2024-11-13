@@ -20,7 +20,7 @@ unit-test-job:
   artifacts:
     when: always
     paths:
-      - mochawesome-report/**  # Path for the HTML report
-      - cypress/screenshots      # Path for screenshots
+      - mochawesome-report/**  
+      - cypress/screenshots  
       - cypress/videos
     expire_in: 7 days
