@@ -4,10 +4,10 @@ const codeCoverage = require('@cypress/code-coverage/task');
 
 
 module.exports = defineConfig({
+  video: true,
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     reportDir: 'mochawesome-report/.jsons',
-    video: true,
     overwrite: false,
     html: true,
     json: true,

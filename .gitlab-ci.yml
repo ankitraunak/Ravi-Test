@@ -8,13 +8,14 @@ unit-test-job:
     - npm ci
     - npm install cypress-cucumber-preprocessor --save-dev
     - npm install mochawesome --save-dev
-    - npx cypress run 
-    - npx mochawesome-merge mochawesome-report/.jsons/*.json > mochawesome.json
-    - npx mochawesome-report-generator mochawesome.json -o mochawesome-report/html
+    - npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator cypress-mochawesome-reporter
+    - npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report,overwrite=false,html=true,json=true
+    - npx mochawesome-merge mochawesome-report/*.json > mochawesome-report/mochawesome.json
+    - npx marge mochawesome-report/mochawesome.json
   artifacts:
     when: always
     paths:
-      - mochawesome-report/html
-      - cypress/screenshots
-      - cypress/videos
+      - mochawesome-report/**
+      - cypress/screenshots/**/*.png
+      - cypress/videos/**/*.mp4
     expire_in: 7 days
