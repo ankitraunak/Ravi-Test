@@ -12,6 +12,7 @@ unit-test-job:
     - npx cypress run
     - npx mochawesome-merge mochawesome-report/.jsons/*.json > mochawesome.json
     - npx mochawesome-report-generator mochawesome.json -o mochawesome-report/html
+    - ls -R mochawesome-report/html  # List files to verify they exist
 
     # Check if HTML report is generated
     - ls -l mochawesome-report/html  # List contents of the html directory to verify
@@ -19,7 +20,7 @@ unit-test-job:
   artifacts:
     when: always
     paths:
-      - mochawesome-report/html  # Path for the HTML report
+      - mochawesome-report/**  # Path for the HTML report
       - cypress/screenshots      # Path for screenshots
       - cypress/videos
     expire_in: 7 days
